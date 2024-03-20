@@ -49,6 +49,126 @@ class Str {
   static Str? maybeOf(BuildContext context) {
     return Localizations.of<Str>(context, Str);
   }
+
+  /// `No internet connection.`
+  String get noInternetConnection {
+    return Intl.message(
+      'No internet connection.',
+      name: 'noInternetConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops Something went wrong`
+  String get oopsSomethingWentWrong {
+    return Intl.message(
+      'Oops Something went wrong',
+      name: 'oopsSomethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops, No results found!`
+  String get oopsNoResultsFound {
+    return Intl.message(
+      'Oops, No results found!',
+      name: 'oopsNoResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong! Please try after some time.`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong! Please try after some time.',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logOut {
+    return Intl.message(
+      'Logout',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Country`
+  String get selectCountry {
+    return Intl.message(
+      'Select Country',
+      name: 'selectCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select the country where\nyou want to study`
+  String get selectCountryDes {
+    return Intl.message(
+      'Please select the country where\nyou want to study',
+      name: 'selectCountryDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proceed`
+  String get proceed {
+    return Intl.message(
+      'Proceed',
+      name: 'proceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Can’t see the country of your interest?`
+  String get cantSeeCountry {
+    return Intl.message(
+      'Can’t see the country of your interest?',
+      name: 'cantSeeCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Consult with us`
+  String get consultWithUs {
+    return Intl.message(
+      'Consult with us',
+      name: 'consultWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome`
+  String get Welcome {
+    return Intl.message(
+      'Welcome',
+      name: 'Welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete User`
+  String get deleteUser {
+    return Intl.message(
+      'Delete User',
+      name: 'deleteUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Str> {

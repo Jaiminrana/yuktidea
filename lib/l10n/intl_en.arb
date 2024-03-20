@@ -1,1 +1,14 @@
-{}
+{
+  "noInternetConnection": "No internet connection.",
+  "oopsSomethingWentWrong": "Oops Something went wrong",
+  "oopsNoResultsFound": "Oops, No results found!",
+  "somethingWentWrong": "Something went wrong! Please try after some time.",
+  "logOut": "Logout",
+  "selectCountry": "Select Country",
+  "selectCountryDes": "Please select the country where\nyou want to study",
+  "proceed": "Proceed",
+  "cantSeeCountry":"Can’t see the country of your interest?",
+  "consultWithUs": "Consult with us",
+  "Welcome": "Welcome",
+  "deleteUser": "Delete User"
+}

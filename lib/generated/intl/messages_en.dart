@@ -21,5 +21,25 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+        "cantSeeCountry": MessageLookupByLibrary.simpleMessage(
+            "Can’t see the country of your interest?"),
+        "consultWithUs":
+            MessageLookupByLibrary.simpleMessage("Consult with us"),
+        "deleteUser": MessageLookupByLibrary.simpleMessage("Delete User"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Logout"),
+        "noInternetConnection":
+            MessageLookupByLibrary.simpleMessage("No internet connection."),
+        "oopsNoResultsFound":
+            MessageLookupByLibrary.simpleMessage("Oops, No results found!"),
+        "oopsSomethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Oops Something went wrong"),
+        "proceed": MessageLookupByLibrary.simpleMessage("Proceed"),
+        "selectCountry": MessageLookupByLibrary.simpleMessage("Select Country"),
+        "selectCountryDes": MessageLookupByLibrary.simpleMessage(
+            "Please select the country where\nyou want to study"),
+        "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong! Please try after some time.")
+      };
 }
