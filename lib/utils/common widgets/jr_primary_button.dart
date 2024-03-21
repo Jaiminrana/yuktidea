@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yuktidea/utils/extensions.dart';
+import 'package:yuktidea/values/app_colors.dart';
 
 class JrPrimaryButton extends StatelessWidget {
   const JrPrimaryButton({
@@ -49,34 +50,51 @@ class JrPrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: context.theme.elevatedButtonTheme.style?.copyWith(
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(100)),
-            side: BorderSide(
-              color: borderColor,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(100)),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.black.withOpacity(0.16),
+              offset: const Offset(6, 6),
+              blurRadius: 12,
+            ),
+            BoxShadow(
+              color: AppColors.white.withOpacity(0.04),
+              offset: const Offset(-6, -6),
+              blurRadius: 12,
+              spreadRadius: 0,
+            ),
+          ]),
+      child: ElevatedButton(
+        style: context.theme.elevatedButtonTheme.style?.copyWith(
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: const BorderRadius.all(Radius.circular(100)),
+              side: BorderSide(
+                color: borderColor,
+              ),
             ),
           ),
+          padding: padding != null ? MaterialStateProperty.all(padding) : null,
+          backgroundColor:
+              color != null ? MaterialStateProperty.all(color) : null,
+          minimumSize: minimumSize,
+          tapTargetSize: tapTargetSize,
         ),
-        padding: padding != null ? MaterialStateProperty.all(padding) : null,
-        backgroundColor:
-            color != null ? MaterialStateProperty.all(color) : null,
-        minimumSize: minimumSize,
-        tapTargetSize: tapTargetSize,
-      ),
-      onPressed: onTap,
-      child: Text(
-        title,
-        maxLines: maxLines,
-        textAlign: textAlign,
-        overflow: textOverflow,
-        style: titleStyle ??
-            TextStyle(
-              fontSize: fontSize,
-              fontWeight: weight,
-              color: titleColor,
-            ),
+        onPressed: onTap,
+        child: Text(
+          title,
+          maxLines: maxLines,
+          textAlign: textAlign,
+          overflow: textOverflow,
+          style: titleStyle ??
+              TextStyle(
+                fontSize: fontSize,
+                fontWeight: weight,
+                color: titleColor,
+              ),
+        ),
       ),
     );
   }

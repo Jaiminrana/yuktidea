@@ -22,7 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "Welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "cantSeeCountry": MessageLookupByLibrary.simpleMessage(
             "Can’t see the country of your interest?"),
         "consultWithUs":
@@ -40,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectCountryDes": MessageLookupByLibrary.simpleMessage(
             "Please select the country where\nyou want to study"),
         "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
-            "Something went wrong! Please try after some time.")
+            "Something went wrong! Please try after some time."),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome")
       };
 }

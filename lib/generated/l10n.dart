@@ -151,10 +151,10 @@ class Str {
   }
 
   /// `Welcome`
-  String get Welcome {
+  String get welcome {
     return Intl.message(
       'Welcome',
-      name: 'Welcome',
+      name: 'welcome',
       desc: '',
       args: [],
     );

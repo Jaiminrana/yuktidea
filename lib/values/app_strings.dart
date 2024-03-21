@@ -7,4 +7,6 @@ class AppStrings {
   static const String nextLine = '\n';
   static const String logErrorPattern = 'Error: %s';
   static const String userString = '%s :- %s';
+
+  static const String invalidRoute = 'Invalid Route';
 }

@@ -8,7 +8,7 @@ class AppTheme {
 
   final _theme = ThemeData(
     primaryColor: const Color(0xff0066F9),
-    scaffoldBackgroundColor: const Color(0xffF8FAFD),
+    scaffoldBackgroundColor: AppColors.backGround,
     datePickerTheme: const DatePickerThemeData(
       surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,

@@ -7,8 +7,8 @@
   "selectCountry": "Select Country",
   "selectCountryDes": "Please select the country where\nyou want to study",
   "proceed": "Proceed",
-  "cantSeeCountry":"Can’t see the country of your interest?",
+  "cantSeeCountry": "Can’t see the country of your interest?",
   "consultWithUs": "Consult with us",
-  "Welcome": "Welcome",
+  "welcome": "Welcome",
   "deleteUser": "Delete User"
 }
