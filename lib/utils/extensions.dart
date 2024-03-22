@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yuktidea/utils/typedefs.dart';
 import 'package:yuktidea/values/app_colors.dart';
 import 'package:yuktidea/values/app_strings.dart';
 
+extension FocusNodeExtension on FocusNode {
+  void unFocus() => hasFocus ? unfocus() : null;
+}
+
 extension ContextExtension on BuildContext {
+  void unFocusField() {
+    FocusScope.of(this).unFocus();
+    SystemChannels.textInput.invokeMethod<void>('TextInput.hide');
+  }
+
 //THEME Related extensions
   ThemeData get theme => Theme.of(this);
 
@@ -15,6 +25,13 @@ extension ContextExtension on BuildContext {
 
   double widthFraction({double sizeFraction = 1}) =>
       MediaQuery.sizeOf(this).width * sizeFraction;
+}
+
+extension NullableStringExtension on String? {
+  /// Returns true if [this] is neither null nor empty string.
+  bool get isNotNullOrEmpty => this?.trim().isNotEmpty ?? false;
+
+  bool get isNullOrEmpty => this?.trim().isEmpty ?? true;
 }
 
 extension StringExtension on String {

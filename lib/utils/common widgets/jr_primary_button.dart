@@ -6,7 +6,7 @@ class JrPrimaryButton extends StatelessWidget {
   const JrPrimaryButton({
     super.key,
     required this.title,
-    required this.titleColor,
+    this.titleColor,
     this.onTap,
     this.enabled = true,
     this.titleStyle,
@@ -25,6 +25,7 @@ class JrPrimaryButton extends StatelessWidget {
     this.textAlign = TextAlign.center,
     this.textOverflow = TextOverflow.ellipsis,
     this.minimumSize = const MaterialStatePropertyAll(Size(20, 20)),
+    this.isEnable = true,
   });
 
   final VoidCallback? onTap;
@@ -41,12 +42,13 @@ class JrPrimaryButton extends StatelessWidget {
   final OutlinedBorder? shape;
   final FontWeight weight;
   final int? maxLines;
-  final Color titleColor;
+  final Color? titleColor;
   final bool minimumButtonWidth;
   final TextAlign textAlign;
   final TextOverflow textOverflow;
   final MaterialStateProperty<Size?> minimumSize;
   final MaterialTapTargetSize? tapTargetSize;
+  final bool isEnable;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +94,11 @@ class JrPrimaryButton extends StatelessWidget {
               TextStyle(
                 fontSize: fontSize,
                 fontWeight: weight,
-                color: titleColor,
+                color: isEnable && titleColor != null
+                    ? titleColor
+                    : isEnable
+                        ? AppColors.lightOrange
+                        : AppColors.yellow,
               ),
         ),
       ),

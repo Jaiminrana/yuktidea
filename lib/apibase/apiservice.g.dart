@@ -19,13 +19,44 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<SelectCountryDm> getSelectCountryData() async {
+  Future<APIResponse<List<CountryDataResDm>>> getCountryData() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<SelectCountryDm>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<APIResponse<List<CountryDataResDm>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/countries',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = APIResponse<List<CountryDataResDm>>.fromJson(
+      _result.data!,
+      (json) => json is List<dynamic>
+          ? json
+              .map<CountryDataResDm>(
+                  (i) => CountryDataResDm.fromJson(i as Map<String, dynamic>))
+              .toList()
+          : List.empty(),
+    );
+    return value;
+  }
+
+  @override
+  Future<APIResponse<SelectCountryDm>> getSelectCountryData() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<APIResponse<SelectCountryDm>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -36,12 +67,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = SelectCountryDm.fromJson(_result.data!);
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = APIResponse<SelectCountryDm>.fromJson(
+      _result.data!,
+      (json) => SelectCountryDm.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 
@@ -56,22 +86,5 @@ class _ApiService implements ApiService {
       }
     }
     return requestOptions;
-  }
-
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
-    if (baseUrl == null || baseUrl.trim().isEmpty) {
-      return dioBaseUrl;
-    }
-
-    final url = Uri.parse(baseUrl);
-
-    if (url.isAbsolute) {
-      return url.toString();
-    }
-
-    return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }

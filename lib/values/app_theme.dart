@@ -9,6 +9,10 @@ class AppTheme {
   final _theme = ThemeData(
     primaryColor: const Color(0xff0066F9),
     scaffoldBackgroundColor: AppColors.backGround,
+    appBarTheme: const AppBarTheme(
+      color: AppColors.backGround,
+      elevation: 0,
+    ),
     datePickerTheme: const DatePickerThemeData(
       surfaceTintColor: Colors.white,
       backgroundColor: Colors.white,
@@ -35,25 +39,31 @@ class AppTheme {
         fontSize: 24,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
-        overflow: TextOverflow.ellipsis,
+        height: 1.5,
       ),
       bodyMedium: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w400,
         color: AppColors.greyColor,
-        overflow: TextOverflow.ellipsis,
+        height: 1.5,
       ),
+      displayMedium: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      color: AppColors.orange,
+      height: 1.5,
+    ),
       bodySmall: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: AppColors.orange,
-        overflow: TextOverflow.ellipsis,
+        height: 1.5,
       ),
       displaySmall: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
-        overflow: TextOverflow.ellipsis,
+        height: 1.5,
       ),
     ),
   );

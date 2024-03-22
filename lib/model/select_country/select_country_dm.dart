@@ -5,24 +5,6 @@ part 'select_country_dm.g.dart';
 @JsonSerializable()
 class SelectCountryDm {
   SelectCountryDm({
-    this.status,
-    this.message,
-    this.data,
-  });
-
-  final bool? status;
-  final String? message;
-  final DataDm? data;
-
-  factory SelectCountryDm.fromJson(Map<String, dynamic> json) =>
-      _$SelectCountryDmFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SelectCountryDmToJson(this);
-}
-
-@JsonSerializable()
-class DataDm {
-  DataDm({
     this.profileStatus,
     this.role,
     this.selectedCountry,
@@ -34,9 +16,10 @@ class DataDm {
   final dynamic selectedCountry;
   final List<CountryDm>? countries;
 
-  factory DataDm.fromJson(Map<String, dynamic> json) => _$DataDmFromJson(json);
+  factory SelectCountryDm.fromJson(Map<String, dynamic> json) =>
+      _$SelectCountryDmFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DataDmToJson(this);
+  Map<String, dynamic> toJson() => _$SelectCountryDmToJson(this);
 }
 
 @JsonSerializable()
