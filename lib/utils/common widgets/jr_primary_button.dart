@@ -14,7 +14,10 @@ class JrPrimaryButton extends StatelessWidget {
     this.height,
     this.fontSize = 18,
     this.child,
-    this.padding,
+    this.padding = const EdgeInsets.symmetric(
+      vertical: 16,
+      horizontal: 70,
+    ),
     this.color,
     this.borderColor = Colors.transparent,
     this.shape,

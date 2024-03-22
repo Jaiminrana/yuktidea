@@ -84,67 +84,61 @@ class GetCountryScreen extends StatelessObserverWidget {
                 child: (store.isSearchResultEmpty)
                     ? Text(Str.current.oopsNoResultsFound)
                     : ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  itemCount: store.searchCountry.length,
-                  itemBuilder: (context, index) {
-                    final country = store.searchCountry[index];
-                    final isCountryValid =
-                        country.flag.isNotNullOrEmpty &&
-                            country.name.isNotNullOrEmpty &&
-                            country.telCode.isNotNullOrEmpty;
-                    return isCountryValid
-                        ? GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        Navigator
-                            .of(context)
-                            .pushNamed(
-                            AppRoutes.enterPhoneNumberScreen,
-                            arguments: country,
-                        );
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        itemCount: store.searchCountry.length,
+                        itemBuilder: (context, index) {
+                          final country = store.searchCountry[index];
+                          final isCountryValid =
+                              country.flag.isNotNullOrEmpty &&
+                                  country.name.isNotNullOrEmpty &&
+                                  country.telCode.isNotNullOrEmpty;
+                          return isCountryValid
+                              ? GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                      AppRoutes.enterPhoneNumberScreen,
+                                      arguments: country,
+                                    );
+                                  },
+                                  child: ListTile(
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 37,
+                                      vertical: 12,
+                                    ),
+                                    leading: SizedBox(
+                                      height: 22,
+                                      width: 34,
+                                      child: JRSvgPicture(
+                                        isSvgNetwork: true,
+                                        fit: BoxFit.cover,
+                                        assetName: country.flag!,
+                                      ),
+                                    ),
+                                    title: Text(
+                                      country.name!,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: context.textTheme.displayMedium
+                                          ?.copyWith(
+                                        color: AppColors.whiteFontColor,
+                                      ),
+                                    ),
+                                    trailing: Text(
+                                      country.telCode!,
+                                      style:
+                                          context.textTheme.bodySmall?.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.whiteFontColor,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink();
                         },
-                      child: Card(
-                        color: AppColors.backGround,
-                        elevation: 4,
-                        child: ListTile(
-                          contentPadding:
-                          const EdgeInsets.symmetric(
-                            horizontal: 37,
-                          ),
-                          leading: SizedBox(
-                            height: 22,
-                            width: 34,
-                            child: JRSvgPicture(
-                              isSvgNetwork: true,
-                              fit: BoxFit.cover,
-                              assetName: country.flag!,
-                            ),
-                          ),
-                          title: Text(
-                            country.name!,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.textTheme.displayMedium
-                                ?.copyWith(
-                              color: AppColors.whiteFontColor,
-                            ),
-                          ),
-                          trailing: Text(
-                            country.telCode!,
-                            style: context.textTheme.bodySmall
-                                ?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.whiteFontColor,
-                            ),
-                          ),
-                        ),
+                        separatorBuilder: (context, index) =>
+                            const JrOpaqueDivider(),
                       ),
-                    )
-                        : const SizedBox.shrink();
-                  },
-                  separatorBuilder: (context, index) =>
-                  const JrOpaqueDivider(),
-                ),
               );
             }),
           ],

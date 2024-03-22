@@ -36,7 +36,7 @@
   "verifyNumber": "Verify Number",
   "verifyNumberDes": "Please enter the OTP received to\nverify your number",
   "verifyNumberError": "OTP does not match, please try again",
-  "didNotReceiveOTP?": "Didn’t receive OTP?",
+  "didNotReceiveOTP": "Didn’t receive OTP?",
   "resendOTP": "Resend OTP",
   "resendOtp": "Resending OTP in 10 seconds",
   "verify": "Verify"

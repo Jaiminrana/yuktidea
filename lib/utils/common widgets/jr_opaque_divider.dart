@@ -5,14 +5,16 @@ class JrOpaqueDivider extends StatelessWidget {
   const JrOpaqueDivider({
     super.key,
     this.margin,
+    this.height =2,
   });
 
   final EdgeInsets? margin;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 2,
+      height: height,
       margin: margin,
       decoration: BoxDecoration(
         gradient: LinearGradient(

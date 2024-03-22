@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   const AppColors._();
 
+  static const Color slateGrey = Color(0xff656366);
   static const Color pureBlack = Color(0xff000000);
   static const Color pureGrey = Color(0xffD9D9D9);
   static const Color backGround = Color(0xff212426);

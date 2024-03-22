@@ -28,6 +28,8 @@ dependencies:
   sprintf: 7.0.0
   json_annotation: 4.8.1
   gradient_borders: 1.0.0
+  mask_text_input_formatter: 2.9.0
+  flutter_otp_text_field: 1.1.1
 
 dev_dependencies:
   flutter_test:

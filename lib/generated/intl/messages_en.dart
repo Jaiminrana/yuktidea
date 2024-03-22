@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "consultWithUs":
             MessageLookupByLibrary.simpleMessage("Consult with us"),
         "deleteUser": MessageLookupByLibrary.simpleMessage("Delete User"),
+        "didNotReceiveOTP":
+            MessageLookupByLibrary.simpleMessage("Didn’t receive OTP?"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter phone number"),
         "enterPhoneNumberDes": MessageLookupByLibrary.simpleMessage(

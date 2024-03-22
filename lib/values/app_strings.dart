@@ -10,4 +10,6 @@ class AppStrings {
   static const String userString = '%s :- %s';
 
   static const String invalidRoute = 'Invalid Route';
+  static const String enterPhoneHint = '9999999999';
+
 }

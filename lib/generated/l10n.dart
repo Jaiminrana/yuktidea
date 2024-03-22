@@ -420,7 +420,15 @@ class Str {
     );
   }
 
-  // skipped getter for the 'didNotReceiveOTP?' key
+  /// `Didn’t receive OTP?`
+  String get didNotReceiveOTP {
+    return Intl.message(
+      'Didn’t receive OTP?',
+      name: 'didNotReceiveOTP',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Resend OTP`
   String get resendOTP {
