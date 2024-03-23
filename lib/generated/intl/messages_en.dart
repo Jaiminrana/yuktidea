@@ -20,9 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(seconds) => "Resending OTP in ${seconds} seconds";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agent": MessageLookupByLibrary.simpleMessage("Agent"),
+        "badRequest": MessageLookupByLibrary.simpleMessage("Bad Request"),
         "cantSeeCountry": MessageLookupByLibrary.simpleMessage(
             "Can’t see the country of your interest?"),
         "consent": MessageLookupByLibrary.simpleMessage("Consent"),
@@ -33,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteUser": MessageLookupByLibrary.simpleMessage("Delete User"),
         "didNotReceiveOTP":
             MessageLookupByLibrary.simpleMessage("Didn’t receive OTP?"),
+        "enterAValidOtp":
+            MessageLookupByLibrary.simpleMessage("Enter a valid OTP"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter phone number"),
         "enterPhoneNumberDes": MessageLookupByLibrary.simpleMessage(
@@ -46,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Information we collect"),
         "informationWeCollectDes": MessageLookupByLibrary.simpleMessage(
             "The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information. If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide. When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number."),
+        "invalidResponse":
+            MessageLookupByLibrary.simpleMessage("Invalid Response"),
         "logOut": MessageLookupByLibrary.simpleMessage("Logout"),
         "noDataFound": MessageLookupByLibrary.simpleMessage("No data found!"),
         "noInternetConnection":
@@ -59,8 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "At studylancer, accessible from studylancer.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by studylancer and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us. This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in studylancer. This policy is not applicable to any information collected offline or via channels other than this website."),
         "proceed": MessageLookupByLibrary.simpleMessage("Proceed"),
         "resendOTP": MessageLookupByLibrary.simpleMessage("Resend OTP"),
-        "resendOtp":
-            MessageLookupByLibrary.simpleMessage("Resending OTP in 10 seconds"),
+        "resendOtpInSeconds": m0,
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "selectCountry": MessageLookupByLibrary.simpleMessage("Select Country"),
         "selectCountryDes": MessageLookupByLibrary.simpleMessage(
@@ -82,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Terms of Service"),
         "updatedTermsDate":
             MessageLookupByLibrary.simpleMessage("Update 16/03/2023"),
+        "validNumberPlease": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid phone number"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "verifyNumber": MessageLookupByLibrary.simpleMessage("Verify Number"),
         "verifyNumberDes": MessageLookupByLibrary.simpleMessage(

@@ -4,6 +4,7 @@ import 'package:yuktidea/resources/resources.dart';
 import 'package:yuktidea/utils/common%20widgets/jr_icon_button.dart';
 import 'package:yuktidea/utils/common%20widgets/jr_opaque_divider.dart';
 import 'package:yuktidea/utils/extensions.dart';
+import 'package:yuktidea/values/app_routes.dart';
 
 class SelectCountryHeader extends StatelessWidget {
   const SelectCountryHeader({super.key});
@@ -23,9 +24,14 @@ class SelectCountryHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 19),
-        Text(
-          Str.current.selectCountry,
-          style: context.textTheme.bodyLarge,
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(AppRoutes.welcomeScreen);
+          },
+          child: Text(
+            Str.current.selectCountry,
+            style: context.textTheme.bodyLarge,
+          ),
         ),
         const SizedBox(height: 19),
         Text(

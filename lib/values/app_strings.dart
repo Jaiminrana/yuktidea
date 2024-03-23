@@ -12,4 +12,10 @@ class AppStrings {
   static const String invalidRoute = 'Invalid Route';
   static const String enterPhoneHint = '9999999999';
 
+
+  // TODO(Jaimin): need to change this, once API give proper API response
+  static const String countrySelectedSuccess = 'Country selection successful';
+
+
+
 }

@@ -7,6 +7,7 @@ import 'package:yuktidea/utils/extensions.dart';
 import 'package:yuktidea/values/app_colors.dart';
 import 'package:yuktidea/values/app_constant.dart';
 import 'package:yuktidea/values/app_routes.dart';
+import 'package:yuktidea/values/enumerations.dart';
 
 class StartUpScreen extends StatelessWidget {
   const StartUpScreen({super.key});
@@ -58,10 +59,18 @@ class StartUpScreen extends StatelessWidget {
                   Row(
                     children: [
                       UserTypeCard(
+                        onTap: () => Navigator.of(context).pushNamed(
+                          AppRoutes.getCountryDataScreen,
+                          arguments: UserType.student,
+                        ),
                         title: Str.current.student,
                         image: Images.student,
                       ),
                       UserTypeCard(
+                        onTap: () => Navigator.of(context).pushNamed(
+                          AppRoutes.getCountryDataScreen,
+                          arguments: UserType.agent,
+                        ),
                         title: Str.current.agent,
                         image: Images.agent,
                       ),

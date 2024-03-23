@@ -50,6 +50,16 @@ class Str {
     return Localizations.of<Str>(context, Str);
   }
 
+  /// `Invalid Response`
+  String get invalidResponse {
+    return Intl.message(
+      'Invalid Response',
+      name: 'invalidResponse',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No internet connection.`
   String get noInternetConnection {
     return Intl.message(
@@ -440,13 +450,13 @@ class Str {
     );
   }
 
-  /// `Resending OTP in 10 seconds`
-  String get resendOtp {
+  /// `Resending OTP in {seconds} seconds`
+  String resendOtpInSeconds(Object seconds) {
     return Intl.message(
-      'Resending OTP in 10 seconds',
-      name: 'resendOtp',
+      'Resending OTP in $seconds seconds',
+      name: 'resendOtpInSeconds',
       desc: '',
-      args: [],
+      args: [seconds],
     );
   }
 
@@ -455,6 +465,36 @@ class Str {
     return Intl.message(
       'Verify',
       name: 'verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid OTP`
+  String get enterAValidOtp {
+    return Intl.message(
+      'Enter a valid OTP',
+      name: 'enterAValidOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get validNumberPlease {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'validNumberPlease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bad Request`
+  String get badRequest {
+    return Intl.message(
+      'Bad Request',
+      name: 'badRequest',
       desc: '',
       args: [],
     );

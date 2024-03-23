@@ -2,10 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sprintf/sprintf.dart';
 import 'package:yuktidea/generated/l10n.dart';
+import 'package:yuktidea/helper/secured_storage_helper.dart';
 import 'package:yuktidea/services/SnackbarService.dart';
 import 'package:yuktidea/utils/extensions.dart';
 import 'package:yuktidea/utils/network_utils.dart';
+import 'package:yuktidea/values/app_constant.dart';
 import 'package:yuktidea/values/app_strings.dart';
+import 'package:yuktidea/values/enumerations.dart';
 
 class HeaderInterceptor extends Interceptor {
   @override
@@ -14,15 +17,21 @@ class HeaderInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final internet = await NetworkUtils.instance.checkHasInternet();
+    final authToken = await SecuredStorageHelper.instance.getSecuredProperty(
+      SecureStorageKeyEnum.authToken,
+    );
+    final accessToken = '${AppConstant.bearer} $authToken';
+    print('accessToken -> $accessToken');
 
     if (internet) {
-      options.headers['Authorization'] =
-          'Bearer 3|X683WgZzsA5bMlSU8GWR4anZBl71YomhuCuObRL4d664a07a';
+      options.headers[AppConstant.authorizationKey] =
+          accessToken;
+         //'Bearer 3|X683WgZzsA5bMlSU8GWR4anZBl71YomhuCuObRL4d664a07a';
 
       _printLog(
         apiMethod: options.method,
         responseBody: options.data.toString(),
-        token: options.headers['Authorization'].toString(),
+        token: options.headers[AppConstant.authorizationKey].toString(),
         parameters: options.queryParameters,
         url: sprintf(
           AppStrings.twoPlaceholdersString,
@@ -33,7 +42,7 @@ class HeaderInterceptor extends Interceptor {
         ),
       );
     } else {
-      SnackbarService.showSnack(Str.current.noInternetConnection);
+      SnackBarService.showSnack(Str.current.noInternetConnection);
     }
     handler.next(options);
   }
@@ -43,7 +52,7 @@ class HeaderInterceptor extends Interceptor {
     _printLog(
       apiMethod: response.requestOptions.method,
       responseBody: response.data.toString(),
-      token: response.headers['Authorization'].toString(),
+      token: response.headers[AppConstant.authorizationKey].toString(),
       parameters: response.requestOptions.data,
       url: sprintf(AppStrings.urlPlaceholderString, [
         response.realUri.scheme,

@@ -13,32 +13,16 @@ enum NetworkState {
   bool get isFailed => this == NetworkState.error;
 }
 
-enum EventCategory {
-  workshops,
-  all,
-  music,
-  business,
-  sports;
+enum UserType {
+  student,
+  agent;
+
+  bool get isStudent => this == student;
+
+  bool get isAgent => this == agent;
 }
 
-enum BottomNavPage {
-  explore,
-  feed,
-  profile;
 
-  bool get isExplore => this == BottomNavPage.explore;
-
-  bool get isFeed => this == BottomNavPage.feed;
-
-  bool get isProfile => this == BottomNavPage.profile;
-
-  static BottomNavPage parse(int index) {
-    if (index == BottomNavPage.profile.index) {
-      return BottomNavPage.profile;
-    } else if (index == BottomNavPage.feed.index) {
-      return BottomNavPage.feed;
-    } else {
-      return BottomNavPage.explore;
-    }
-  }
+enum SecureStorageKeyEnum {
+  authToken
 }

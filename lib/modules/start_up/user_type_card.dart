@@ -7,27 +7,31 @@ class UserTypeCard extends StatelessWidget {
     super.key,
     required this.image,
     required this.title,
+    this.onTap,
   });
 
   final String image;
   final String title;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(image),
+          Text(
+            title,
+            style: context.textTheme.bodySmall?.copyWith(
+              color: AppColors.whiteFontColor,
+              fontWeight: FontWeight.w600,
+            ),
 
-      children: [
-        Image.asset(image),
-        Text(
-          title,
-          style: context.textTheme.bodySmall?.copyWith(
-            color: AppColors.whiteFontColor,
-            fontWeight: FontWeight.w600,
           ),
-
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

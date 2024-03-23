@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:yuktidea/model/county_data/country_data_res_dm.dart';
+import 'package:yuktidea/modules/login/store/enter_phone_number_store.dart';
+import 'package:yuktidea/modules/login/store/get_country_store.dart';
+import 'package:yuktidea/modules/login/store/verify_number_store.dart';
+import 'package:yuktidea/modules/login/view/enter_phone_number_screen.dart';
 import 'package:yuktidea/modules/login/view/get_country_screen.dart';
-import 'package:yuktidea/modules/login/view/phone_number_screen.dart';
+import 'package:yuktidea/modules/onboarding/store/select_country_store.dart';
 import 'package:yuktidea/modules/onboarding/view/select_county/select_country_screen.dart';
+import 'package:yuktidea/modules/onboarding/view/welcome/store/welcome_store.dart';
 import 'package:yuktidea/modules/start_up/start_up_screen.dart';
 import 'package:yuktidea/modules/start_up/terms_of_service_screen.dart';
 import 'package:yuktidea/utils/common%20widgets/invalid_route.dart';
+import 'package:yuktidea/utils/extensions.dart';
+import 'package:yuktidea/utils/typedefs.dart';
 import 'package:yuktidea/values/app_routes.dart';
+import 'package:yuktidea/values/enumerations.dart';
 
+import 'modules/login/view/verify_number_screen.dart';
 import 'modules/onboarding/view/welcome/view/welcome_screen.dart';
 
 class Routes {
@@ -33,26 +42,47 @@ class Routes {
           widget: const TermsOfServiceScreen(),
         );
       case AppRoutes.getCountryDataScreen:
+        final userType = settings.arguments as UserType?;
         return getRoute(
-          widget: const GetCountryScreen(),
+          widget: userType == null
+              ? const InvalidRoute()
+              : GetCountryScreen(userType: userType).withProvider(
+                  GetCountryStore()..initialize(),
+                ),
         );
       case AppRoutes.enterPhoneNumberScreen:
-        final country = settings.arguments as CountryDataResDm?;
+        final phoneNavDm = settings.arguments as PhoneNavDm?;
         return getRoute(
-          widget: country == null
+          widget: phoneNavDm == null
               ? const InvalidRoute()
-              : PhoneNumberScreen(
-                  country: country,
+              : EnterPhoneNumberScreen(
+                  country: phoneNavDm.country,
+                ).withProvider(
+                  EnterPhoneNumberStore(
+                    userType: phoneNavDm.userType,
+                  ),
                 ),
         );
 
-      case AppRoutes.onBoardingScreen:
+      case AppRoutes.verifyPhoneNumberScreen:
+        final phoneNavDm = settings.arguments as PhoneNavDm?;
         return getRoute(
-          widget: const SelectCountryScreen(),
+          widget: phoneNavDm == null
+              ? const InvalidRoute()
+              : const VerifyNumberScreen().withProvider(
+                  VerifyNumberStore(
+                    phoneNavDm: phoneNavDm,
+                  ),
+                ),
+        );
+
+      case AppRoutes.selectCountryScreen:
+        return getRoute(
+          widget: const SelectCountryScreen().withProvider(SelectCountryStore()..init()),
         );
       case AppRoutes.welcomeScreen:
         return getRoute(
-          widget: const WelcomeScreen(),
+          widget: const WelcomeScreen().withProvider(WelcomeStore()),
         );
 
       /// An invalid route. User shouldn't see this, it's for debugging purpose

@@ -1,4 +1,5 @@
 {
+  "invalidResponse": "Invalid Response",
   "noInternetConnection": "No internet connection.",
   "noDataFound": "No data found!",
   "oopsSomethingWentWrong": "Oops Something went wrong",
@@ -38,6 +39,9 @@
   "verifyNumberError": "OTP does not match, please try again",
   "didNotReceiveOTP": "Didn’t receive OTP?",
   "resendOTP": "Resend OTP",
-  "resendOtp": "Resending OTP in 10 seconds",
-  "verify": "Verify"
+  "resendOtpInSeconds": "Resending OTP in {seconds} seconds",
+  "verify": "Verify",
+  "enterAValidOtp": "Enter a valid OTP",
+  "validNumberPlease":"Please enter a valid phone number",
+  "badRequest": "Bad Request"
 }

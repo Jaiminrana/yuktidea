@@ -12,6 +12,7 @@ class GetCountryStore = _GetCountryStore with _$GetCountryStore;
 
 abstract class _GetCountryStore with Store {
   void initialize() {
+    getCountryListData();
     searchController.addListener(onChanged);
   }
 
@@ -53,13 +54,12 @@ abstract class _GetCountryStore with Store {
       if (countryData.isEmpty) {
         throw Exception();
       }
-
       countryList.addAll(countryData);
       countryState = NetworkState.success;
     } catch (e) {
       countryState = NetworkState.error;
       debugPrint(e.toString());
-      SnackbarService.showSnack(Str.current.errorCountry);
+      SnackBarService.showSnack(Str.current.errorCountry);
     }
   }
 }

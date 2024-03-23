@@ -9,12 +9,19 @@ import 'package:yuktidea/utils/common%20widgets/jr_svg_picture.dart';
 import 'package:yuktidea/utils/extensions.dart';
 
 import 'package:yuktidea/utils/common%20widgets/jr_scaffold.dart';
+import 'package:yuktidea/utils/typedefs.dart';
 import 'package:yuktidea/values/app_colors.dart';
 import 'package:yuktidea/values/app_constant.dart';
 import 'package:yuktidea/values/app_routes.dart';
+import 'package:yuktidea/values/enumerations.dart';
 
 class GetCountryScreen extends StatelessObserverWidget {
-  const GetCountryScreen({super.key});
+  const GetCountryScreen({
+    required this.userType,
+    super.key,
+  });
+
+  final UserType userType;
 
   @override
   Widget build(BuildContext context) {
@@ -81,64 +88,77 @@ class GetCountryScreen extends StatelessObserverWidget {
             const SizedBox(height: 30),
             Observer(builder: (context) {
               return Expanded(
-                child: (store.isSearchResultEmpty)
-                    ? Text(Str.current.oopsNoResultsFound)
-                    : ListView.separated(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        itemCount: store.searchCountry.length,
-                        itemBuilder: (context, index) {
-                          final country = store.searchCountry[index];
-                          final isCountryValid =
-                              country.flag.isNotNullOrEmpty &&
-                                  country.name.isNotNullOrEmpty &&
-                                  country.telCode.isNotNullOrEmpty;
-                          return isCountryValid
-                              ? GestureDetector(
-                                  behavior: HitTestBehavior.translucent,
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(
-                                      AppRoutes.enterPhoneNumberScreen,
-                                      arguments: country,
-                                    );
-                                  },
-                                  child: ListTile(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 37,
-                                      vertical: 12,
-                                    ),
-                                    leading: SizedBox(
-                                      height: 22,
-                                      width: 34,
-                                      child: JRSvgPicture(
-                                        isSvgNetwork: true,
-                                        fit: BoxFit.cover,
-                                        assetName: country.flag!,
+                child: store.countryState.isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : (store.isSearchResultEmpty || store.countryState.isFailed)
+                        ? Text(
+                            Str.current.oopsNoResultsFound,
+                            style: context.textTheme.bodyMedium,
+                          )
+                        : ListView.separated(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            itemCount: store.searchCountry.length,
+                            itemBuilder: (context, index) {
+                              final country = store.searchCountry[index];
+                              final isCountryValid =
+                                  country.flag.isNotNullOrEmpty &&
+                                      country.name.isNotNullOrEmpty &&
+                                      country.telCode.isNotNullOrEmpty;
+                              return isCountryValid
+                                  ? GestureDetector(
+                                      behavior: HitTestBehavior.translucent,
+                                      onTap: () {
+                                        final PhoneNavDm phoneNavDm = (
+                                          country: country,
+                                          userType: userType,
+                                          phoneNumber: null,
+                                        );
+                                        Navigator.of(context).pushNamed(
+                                          AppRoutes.enterPhoneNumberScreen,
+                                          arguments: phoneNavDm,
+                                        );
+                                      },
+                                      child: ListTile(
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                          horizontal: 37,
+                                          vertical: 12,
+                                        ),
+                                        leading: SizedBox(
+                                          height: 22,
+                                          width: 34,
+                                          child: JRSvgPicture(
+                                            isSvgNetwork: true,
+                                            fit: BoxFit.cover,
+                                            assetName: country.flag!,
+                                          ),
+                                        ),
+                                        title: Text(
+                                          country.name!,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: context.textTheme.displayMedium
+                                              ?.copyWith(
+                                            color: AppColors.whiteFontColor,
+                                          ),
+                                        ),
+                                        trailing: Text(
+                                          country.telCode!,
+                                          style: context.textTheme.bodySmall
+                                              ?.copyWith(
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColors.whiteFontColor,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    title: Text(
-                                      country.name!,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: context.textTheme.displayMedium
-                                          ?.copyWith(
-                                        color: AppColors.whiteFontColor,
-                                      ),
-                                    ),
-                                    trailing: Text(
-                                      country.telCode!,
-                                      style:
-                                          context.textTheme.bodySmall?.copyWith(
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.whiteFontColor,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : const SizedBox.shrink();
-                        },
-                        separatorBuilder: (context, index) =>
-                            const JrOpaqueDivider(),
-                      ),
+                                    )
+                                  : const SizedBox.shrink();
+                            },
+                            separatorBuilder: (context, index) =>
+                                const JrOpaqueDivider(),
+                          ),
               );
             }),
           ],

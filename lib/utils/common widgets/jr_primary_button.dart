@@ -8,7 +8,6 @@ class JrPrimaryButton extends StatelessWidget {
     required this.title,
     this.titleColor,
     this.onTap,
-    this.enabled = true,
     this.titleStyle,
     this.width,
     this.height,
@@ -29,10 +28,17 @@ class JrPrimaryButton extends StatelessWidget {
     this.textOverflow = TextOverflow.ellipsis,
     this.minimumSize = const MaterialStatePropertyAll(Size(20, 20)),
     this.isEnable = true,
+    this.loading = false,
+    this.loadingWidget = const SizedBox(
+      height: 20,
+      width: 20,
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(AppColors.orange),
+      ),
+    ),
   });
 
   final VoidCallback? onTap;
-  final bool enabled;
   final String title;
   final TextStyle? titleStyle;
   final double? width;
@@ -52,6 +58,8 @@ class JrPrimaryButton extends StatelessWidget {
   final MaterialStateProperty<Size?> minimumSize;
   final MaterialTapTargetSize? tapTargetSize;
   final bool isEnable;
+  final bool loading;
+  final Widget? loadingWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -87,23 +95,25 @@ class JrPrimaryButton extends StatelessWidget {
           minimumSize: minimumSize,
           tapTargetSize: tapTargetSize,
         ),
-        onPressed: onTap,
-        child: Text(
-          title,
-          maxLines: maxLines,
-          textAlign: textAlign,
-          overflow: textOverflow,
-          style: titleStyle ??
-              TextStyle(
-                fontSize: fontSize,
-                fontWeight: weight,
-                color: isEnable && titleColor != null
-                    ? titleColor
-                    : isEnable
-                        ? AppColors.lightOrange
-                        : AppColors.yellow,
+        onPressed: isEnable && !loading ? onTap : null,
+        child: loading && loadingWidget != null
+            ? loadingWidget!
+            : Text(
+                title,
+                maxLines: maxLines,
+                textAlign: textAlign,
+                overflow: textOverflow,
+                style: titleStyle ??
+                    TextStyle(
+                      fontSize: fontSize,
+                      fontWeight: weight,
+                      color: isEnable && titleColor != null
+                          ? titleColor
+                          : isEnable
+                              ? AppColors.lightOrange
+                              : AppColors.yellow,
+                    ),
               ),
-        ),
       ),
     );
   }

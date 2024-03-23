@@ -8,10 +8,12 @@ import 'package:yuktidea/values/app_routes.dart';
 class SelectCountryFooter extends StatelessWidget {
   const SelectCountryFooter({
     this.isEnable = false,
+    this.onTap,
     super.key,
   });
 
   final bool isEnable;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class SelectCountryFooter extends StatelessWidget {
         JrPrimaryButton(
           isEnable: isEnable,
           title: Str.current.proceed,
-          onTap: () => isEnable
-              ? Navigator.of(context).pushNamed(AppRoutes.welcomeScreen)
-              : null,
+          onTap: () {
+            isEnable ? onTap?.call() : null;
+          },
           borderColor: AppColors.white.withOpacity(0.02),
           padding: const EdgeInsets.symmetric(
             vertical: 16,
