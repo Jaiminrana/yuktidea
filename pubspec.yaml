@@ -10,36 +10,43 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  cupertino_icons: 1.0.2
   #state_management
-  mobx: ^2.2.0
-  flutter_mobx: ^2.0.6+5
-  provider: ^6.0.5
+  mobx: 2.2.0
+  flutter_mobx: 2.0.6+5
+  provider: 6.0.5
   #  Networking
-  retrofit: ^4.0.3
-  dio: ^5.4.0
-  connectivity_plus: ^5.0.2
+  retrofit: 4.0.3
+  dio: 5.4.0
+  connectivity_plus: 5.0.2
   #image
-  cached_network_image: ^3.2.3
-  svg_flutter: ^0.0.1
-  spider: ^4.2.1
+  cached_network_image: 3.3.0
+  svg_flutter: 0.0.1
+  spider: 4.2.1
   #localization
   intl: 0.18.0
-  sprintf: ^7.0.0
-  json_annotation: ^4.8.1
+  sprintf: 7.0.0
+  json_annotation: 4.8.1
+  gradient_borders: 1.0.0
+  mask_text_input_formatter: 2.9.0
+  flutter_otp_text_field: 1.1.1
+  flutter_secure_storage: 9.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  retrofit_generator: ^7.0.1
-  build_runner: ^2.4.5
-  json_serializable: ^6.7.0
-  mobx_codegen: ^2.3.0
-  very_good_analysis: ^5.0.0+1
+  flutter_lints: 2.0.0
+  retrofit_generator: 7.0.1
+  build_runner: 2.4.5
+  json_serializable: 6.7.0
+  mobx_codegen: 2.3.0
+  very_good_analysis: 5.0.0+1
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/vectors/
+    - assets/images/
 
 flutter_intl:
   enabled: true
